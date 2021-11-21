@@ -1,2 +1,2 @@
 # lista2_poo
-Exercícios da facul
+Exercícios da facul, matéria de POO em java
