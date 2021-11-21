@@ -2,18 +2,33 @@ package Entidades.Carrinhos;
 
 import java.util.ArrayList;
 
-import Entidades.Estoques.Estoque;
 import Entidades.Produtos.Produto;
 
 public class Carrinho {
     private ArrayList<CarrinhoItem> items = new ArrayList<CarrinhoItem>();
 
+    
+    public CarrinhoItem getIndex(int index){
+        return items.get(index);
+    }
+
+    public float getValorTotal() {
+        float valorTotal = 0f;
+        for (CarrinhoItem carrinhoItem : items) {
+            valorTotal += carrinhoItem.getValorTotal();
+        }
+        return valorTotal;
+    }
+
     @Override
     public String toString(){
         String msg = "";
+        Float valorTotal = 0f;
         for (CarrinhoItem item : items) {
             msg += Integer.toString((items.indexOf(item)+1)) + " - " + item.toString() + "\n";
+            valorTotal += item.getValorTotal();
         }
+        msg += String.format("Valor total: R$ %.2f\n", valorTotal);
         return msg;
     }
 
@@ -61,12 +76,4 @@ public class Carrinho {
         return null;
     }
 
-    public float ProcessarCarrinho(Estoque estoque) throws Exception {
-        float valorTotal = 0;
-        for (CarrinhoItem item : items) {
-            estoque.Remover(item.getProduto().getNome(), item.getQuantidade());
-            valorTotal += item.getProduto().getValor() * item.getQuantidade();
-        }
-        return valorTotal;
-    }
 }
