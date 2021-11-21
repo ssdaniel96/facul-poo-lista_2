@@ -6,6 +6,15 @@ import Entidades.Produtos.Produto;
 
 public class Estoque {
     private ArrayList<EstoqueItem> items = new ArrayList<EstoqueItem>();
+    
+    @Override
+    public String toString(){
+        String estoque = "";
+        for (EstoqueItem estoqueItem : items) {
+            estoque += Integer.toString(items.indexOf(estoqueItem) + 1) + " - " +  estoqueItem.toString() + "\n";
+        }
+        return estoque;
+    }
 
     public void Adicionar(String nome, float valor, int quantidade) throws Exception {
         EstoqueItem item = buscarProduto(nome);
@@ -22,11 +31,8 @@ public class Estoque {
         }
     }
 
-    public void Remover(String nome, int quantidade) throws Exception {
-        var item = buscarProduto(nome);
-        if (item == null) {
-            throw new Exception("Não existe esse produto para retirar do estoque");
-        }
+    public void Remover(int index, int quantidade) throws Exception{
+        var item = getIndex(index);
         if (item.getQuantidade() < quantidade) {
             throw new Exception(
                     String.format("Quantidade atual que existe em estoque (%d) é inferior a quantidade requerida (%d)",
@@ -41,6 +47,14 @@ public class Estoque {
         }
     }
 
+    public void Remover(String nome, int quantidade) throws Exception {
+        var item = buscarProduto(nome);
+        if (item == null) {
+            throw new Exception("Não existe esse produto para retirar do estoque");
+        }
+        Remover(items.indexOf(item), quantidade);
+    }
+
     private EstoqueItem buscarProduto(String nome) {
         for (EstoqueItem item : items) {
             if (item.getProduto().getNome().equals(nome)) {
@@ -48,6 +62,10 @@ public class Estoque {
             }
         }
         return null;
+    }
+
+    public EstoqueItem getIndex(int index){
+        return items.get(index);
     }
 
 }

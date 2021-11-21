@@ -6,6 +6,11 @@ public class EstoqueItem {
     private Produto produto;
     private int quantidade;
     
+    @Override
+    public String toString(){
+        return String.format("%s - R$ %.2f (%d)", produto.getNome(), produto.getValor(), quantidade);
+    }
+
     public EstoqueItem(Produto produto, int quantidade) throws Exception {
         setProduto(produto);
         setQuantidade(quantidade);

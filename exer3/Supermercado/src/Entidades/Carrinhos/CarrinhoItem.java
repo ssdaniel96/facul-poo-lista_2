@@ -11,6 +11,11 @@ public class CarrinhoItem {
         setQuantidade(quantidade);
     }
 
+    @Override
+    public String toString(){
+        return String.format("%s - Valor Un. %.2f - Total: %.2f (%d)", produto.getNome(), produto.getValor(), quantidade * produto.getValor(), quantidade);
+    }
+
     public Produto getProduto() {
         return produto;
     }
