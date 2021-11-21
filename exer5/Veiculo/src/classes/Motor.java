@@ -1,5 +1,7 @@
 package classes;
 
+import javax.swing.JOptionPane;
+
 public class Motor{
     private int NumCilindro;
     private int Potenci;
@@ -14,8 +16,17 @@ public class Motor{
         setPotenci(potenci);
     }
 
-    public Get() {
-        
+    public void Get() {
+        setNumCilindro(Integer.parseInt(JOptionPane.showInputDialog(null, "Digite o num do Cilindro")));
+        setPotenci(Integer.parseInt(JOptionPane.showInputDialog(null, "Digite a potencia")));
+    }
+
+    protected String getPrint() {
+        return "Num Cilindro: " + NumCilindro + "\nPotencia: " + Potenci + "\n";
+    }
+
+    public void Print(){
+        JOptionPane.showMessageDialog(null, getPrint());
     }
     
     public int getPotenci() {
