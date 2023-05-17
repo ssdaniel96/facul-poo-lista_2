@@ -1,3 +1,2 @@
 # SOBRE
-Apenas uma lista de exercício da matéria de POO
-Exercícios da facul, matéria de POO em java
+Apenas uma lista de exercício da matéria de POO do Curso de Engenharia da Computação do UNASP
